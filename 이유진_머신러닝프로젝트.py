@@ -42,6 +42,8 @@ with col2:
     st.subheader("🏥 보건 및 신체 지표")
     thinness = st.slider("10대 저체중 유병률 (thinness 1-19 years, %)", 
                          min_value=0.0, max_value=27.7, value=4.0, step=0.1)
+    thineess = np.log1p(thinness)
+    
     hiv_raw = st.number_input("HIV/AIDS 유병률 (0-50.6 사이 입력)", 
                               min_value=0.0, max_value=50.6, value=0.1, step=0.1)
     hiv_log = np.log1p(hiv_raw) 
@@ -54,10 +56,10 @@ st.divider()
 if st.button("기대수명 예측하기", use_container_width=True):
     input_data = {
         'Income composition of resources': income_comp,
-        'HIV_log': hiv_log,
+        ' HIV/AIDS': hiv_log,
         ' BMI ': bmi,
         'Adult Mortality': adult_mortality,
-        'five deaths_log': five_death_log,
+        'under-five deaths ': five_death_log,
         'Schooling': schooling,
         ' thinness  1-19 years': thinness
     }
